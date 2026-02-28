@@ -1,31 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\PageController;
 
-Route::get('/', function () {
-    return ('Selamat Datang');
-});
+Route::get('/', [PageController::class,'index']);
 
-Route::get('/hello', function () {
- return 'Hello World';
-});
+Route::get('/about', [PageController::class,'about']);
+
+Route::get('/articles/{Id}', [PageController::class,'articles']);
+
+Route::get('/hello', [WelcomeController::class,'hello']);
 
 Route::get('/world', function () {
  return 'World';
 });
 
-Route::get('/about', function () {
-    return ('NIM saya 244107020154, Nama saya Hafiz Rizqi Hernanda');
-});
 
 
 Route::get('/posts/{post}/comments/{comment}', function
 ($postId, $commentId) {
  return 'Pos ke-'.$postId." Komentar ke-: ".$commentId;
-});
-
-Route::get('/articles/{articleId}', function ($articleId) {
- return 'Halaman artikel dengan ID ke-'.$articleId;
 });
 
 Route::get('/user/{name?}', function ($name='null') {
